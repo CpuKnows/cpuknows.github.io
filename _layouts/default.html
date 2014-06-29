@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+
+<html>
+    <head prefix="og: http://ogp.me/ns#">
+        <meta charset="utf-8" />
+        <meta name="description" content="{{ page.description }}" />
+        <meta name="author" content="{{ site.author }}" />
+        <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <meta property="og:title" content="{% if page.title %}{{ page.title }} - {% endif %}{{ site.title }}">
+        <meta property="og:type" content="website">
+        <meta property="og:image" content="{{ site.url }}/img/me.png">
+        <meta property="og:url" content="{{ site.url }}{{ page.url }}">
+        <meta property="og:description" content="{{ page.description }}">
+
+        <title>{% if page.title %}{{ page.title }} - {% endif %}{{ site.title }}</title>
+
+    {% for css in site.css %}
+        <link href="{{ css }}" rel="stylesheet" type="text/css">
+    {% endfor %}
+    {% if page.id == 'home' %}
+        {% for css in site.posts.first.css %}
+        <link href="{{ css }}" rel="stylesheet" type="text/css">
+        {% endfor %}
+    {% else %}
+        {% for css in page.css %}
+        <link href="{{ css }}" rel="stylesheet" type="text/css">
+        {% endfor %}
+    {% endif %}
+    </head>
+
+    <body>
+        <div class="container">
+            <button class="nav js-mobile">
+                <i class="icon-reorder"></i>
+            </button>
+            <div class="side">
+                <div class="logo">
+                    <img src="/img/me circle.png" alt="Profile photo"/>
+                </div>
+
+                <h2>John Maxwell</h2>
+
+                <div class="paragraphs">
+                    <p>
+                        I'm a programming making the transition into the world of machine learning and data science.
+                    </p>
+                </div>
+
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/posts/">Posts</a></li>
+                    <li><a href="/about/">About</a></li>
+                </ul>
+
+                <p class="profiles">
+                    <a title="GitHub" href="{{ site.data.accounts.github.site }}"><icon class="fa fa-github-square"></icon></a>
+                    <a title="LinkedIn" href="{{ site.data.accounts.linkedin.site }}"><icon class="fa fa-linkedin-square"></icon></a>
+                </p>
+            </div>
+
+            <div class="wrap">
+                <div class="content">
+                    {{ content }}
+                </div>
+            </div>
+        </div>
+
+        <!--<script type="text/javascript">
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', '']);
+          _gaq.push(['_trackPageview']);
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();
+        </script>-->
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        <script src="/js/app.js"></script>
+        {% for js in site.js %}
+            <script src="{{ js }}" type="text/javascript"></script>
+        {% endfor %}
+        {% if page.id == 'home' %}
+            {% for js in site.posts.first.js %}
+                <script src="{{ js }}" type="text/javascript"></script>
+            {% endfor %}
+        {% else %}
+            {% for js in page.js %}
+                <script src="{{ js }}" type="text/javascript"></script>
+            {% endfor %}
+        {% endif %}
+    </body>
+</html>

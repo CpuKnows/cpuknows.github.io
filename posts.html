@@ -1,0 +1,15 @@
+---
+layout: default
+title: Posts
+description: Archives of blog posts written by John Maxwell
+---
+
+<h2 id="posts">Posts <icon class="fa fa-angle-double-right"></icon></h2>
+<div class="posts">
+{% for post in site.posts %}
+   <span>{{ post.date | date: "%d %B %Y" }}</span> &mdash; <a href="{{ post.url }}">{{ post.title }}</a>
+    <p>
+       {{ post.description }}
+    </p>
+{% endfor %}
+</ul>

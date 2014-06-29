@@ -1,0 +1,17 @@
+---
+id: home
+layout: default
+title: Home
+description:
+    Dev blog for John Maxwell
+---
+
+<h2>Latest Post <icon class="fa fa-angle-double-right"></icon></h2>
+
+<h4>
+    <a href="{{ site.posts.first.url }}">
+        {{ site.posts.first.date | date: "%d %B %Y" }}
+    </a>
+</h4>
+
+{{ site.posts.first.content }}

@@ -1,0 +1,15 @@
+safe: true
+highlighter: true
+permalink: pretty
+markdown: rdiscount
+
+title: John Maxwell
+name: John Maxwell's Dev Blog
+url: http://http://cpuknows.github.io/
+
+author: John Maxwell
+
+css:
+    - /css/base.css
+    - /lib/font-awesome/css/font-awesome.min.css
+    - http://fonts.googleapis.com/css?family=Droid+Sans:400,700
