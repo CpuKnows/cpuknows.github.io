@@ -23,22 +23,6 @@ ul.pretty {
     margin: 4px 0 18px 40px;
 }
 
-ul.pretty li {
-    float: left;
-    width: 180px;
-    margin: 4px 0;
-}
-
-ul.pretty:before, ul.pretty:after {
-    display: table;
-    line-height: 0;
-    content: "";
-}
-
-ul.pretty:after {
-    clear:both;
-}
-
 div.buttons {
     text-align: center;
 }

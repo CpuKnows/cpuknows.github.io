@@ -5,11 +5,12 @@ markdown: rdiscount
 
 title: John Maxwell
 name: John Maxwell's Dev Blog
-url: http://http://cpuknows.github.io/
+url: http://cpuknows.com/
 
 author: John Maxwell
 
 css:
     - /css/base.css
+    - /css/code.css
     - /lib/font-awesome/css/font-awesome.min.css
     - http://fonts.googleapis.com/css?family=Droid+Sans:400,700
