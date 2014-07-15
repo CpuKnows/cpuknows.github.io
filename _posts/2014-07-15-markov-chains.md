@@ -40,14 +40,14 @@ I have to credit [Lindsey Bieda][zombie markov] for this great illustration of a
 
 <figure>
 	<img src="/img/2014-7-15-markov-chain/mc_figure1.png">
-	<figcaption><a href="rarlindseysmash.com">rarlindseysmash.com</a></figcaption>
+	<figcaption><a href="http://rarlindseysmash.com">rarlindseysmash.com</a></figcaption>
 </figure>
 
 Markov Chains are a pretty simple concept, a state machine with probabilistic transitions. They are great for modeling closed systems in chemistry, physics, economics, and social sciences. For computational work they can be represented simply as a state machine matrix.
 
 <figure>
 	<img src="/img/2014-7-15-markov-chain/mc_figure2.png">
-	<figcaption><a href="rarlindseysmash.com">rarlindseysmash.com</a></figcaption>
+	<figcaption><a href="http://rarlindseysmash.com">rarlindseysmash.com</a></figcaption>
 </figure>
 
 A Markov Chain is just one form of a Markov Model which can be represented by a time sliced diagram known as a Trellis diagram. The **y** states are observed while the **x** states are hidden. We can only know within a certain probability what the hidden states are. To model this system we need three pieces of information:
@@ -60,7 +60,7 @@ A Markov Chain is just one form of a Markov Model which can be represented by a 
 
 <figure>
 	<img src="/img/2014-7-15-markov-chain/hmm_trellis.png">
-	<figcaption><a href="wikipedia.org">wikipedia.org</a></figcaption>
+	<figcaption><a href="http://wikipedia.org">wikipedia.org</a></figcaption>
 </figure>
 
 Hidden Markov Models (HMM) are a way to uncover the hidden states, for example a Markov Chain, based on observed outcomes. We can use the Human, Vampire, Zombie Markov Chain presented above with Scikit Learn's HMM implementation to perform a couple of useful tasks. First, we can generate sample data for state transitions using **GaussianHMM**. The starting point (initial distribution) will always be human, the transition probability will be the state machine matrix described above, and the emission probability will be a Gaussian distribution.
@@ -152,7 +152,7 @@ mean =  [ 8.95105501  5.19157599]
 var =  [ 0.10974938  0.26489229]
 {% endhighlight %}
 
-That's a basic introduction to Markov Chains and Hidden Markov Models. There are a lot of other cool (and useful) topics in this space to explore, like Markov Chain Monte Carlo, so don't stop learning! You can download the IPython Notebooks I used if you'd like to play around with [text generation]({{ site.url }}downloads/HVZ_Makov_Chain.ipynb) or [HMMs]({{ site.url }}downloads/Markov_Chain_Text_Generator.ipynb).
+That's a basic introduction to Markov Chains and Hidden Markov Models. There are a lot of other cool (and useful) topics in this space to explore, like Markov Chain Monte Carlo, so don't stop learning! You can download the IPython Notebooks I used if you'd like to play around with [text generation]({{ site.url }}downloads/Markov_Chain_Text_Generator.ipynb) or [HMMs]({{ site.url }}downloads/HVZ_Makov_Chain.ipynb).
 
 [alice]: http://www.gutenberg.org/ebooks/11
 [garkov]: http://joshmillard.com/garkov/
