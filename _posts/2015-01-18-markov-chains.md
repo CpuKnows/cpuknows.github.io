@@ -39,14 +39,14 @@ I have to credit [Lindsey Bieda][zombie markov] for this great illustration of a
 >Consider a world filled with zombies, vampires, and humans. In this world humans can become zombies, vampires, or stay human. Zombies can become humans by a drug created by Dr. Zork or stay zombies. Vampires can become zombies if they feed on zombies or stay human. In a Markov chain we want to consider the probabilities of each of these things occurring. Humans have a 0.50 chance of staying human and a 0.25 chance of becoming a zombie and a 0.25 chance of becoming a vampire. Zombies, on the other hand, have a 0.15 chance of the cure actually working and becoming human again and a 0.85 chance of staying a zombie. Vampires have the highest chance of staying the same at 0.95 and only a 0.05 chance of stupidly feasting on zombie.
 
 <figure>
-	<img src="/img/2014-7-15-markov-chain/mc_figure1.png">
+	<img src="/img/2015-1-18-markov-chain/mc_figure1.png">
 	<figcaption><a href="http://rarlindseysmash.com">rarlindseysmash.com</a></figcaption>
 </figure>
 
 Markov Chains are a pretty simple concept, a state machine with probabilistic transitions. They are great for modeling closed systems in chemistry, physics, economics, and social sciences. For computational work they can be represented simply as a state machine matrix.
 
 <figure>
-	<img src="/img/2014-7-15-markov-chain/mc_figure2.png">
+	<img src="/img/2015-1-18-markov-chain/mc_figure2.png">
 	<figcaption><a href="http://rarlindseysmash.com">rarlindseysmash.com</a></figcaption>
 </figure>
 
@@ -59,7 +59,7 @@ A Markov Chain is just one form of a Markov Model which can be represented by a 
 </ul>
 
 <figure>
-	<img src="/img/2014-7-15-markov-chain/hmm_trellis.png">
+	<img src="/img/2015-1-18-markov-chain/hmm_trellis.png">
 	<figcaption><a href="http://wikipedia.org">wikipedia.org</a></figcaption>
 </figure>
 
@@ -105,7 +105,7 @@ plt.show()
 {% endhighlight %}
 
 <figure>
-	<img src="/img/2014-7-15-markov-chain/sample_chain.png">
+	<img src="/img/2015-1-18-markov-chain/sample_chain.png">
 </figure>
 
 Technically this represents one individual's state transitions so we can infer that they're not having a good day. We can also perform the reverse operation by taking a set of observations to discover the model start probabilities, transition probabilities, mean, and covariance. We'll fit the model to the sample points we just generated to test this out. This uses a form of gradient descent to make predictions so it's possible to get stuck at a local minimum. You should always tweak the parameters and compare results using the **score()** method for the best model. These results are close enough where we can identify the human, vampire, and zombie states. They would be even better with more data. Based on the generated sample points above it may appear like it's finding these states with a form of clustering, but it's actually using the [Viterbi Algorithm][viterbi] which I won't discuss, but feel free to find out more.

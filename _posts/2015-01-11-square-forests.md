@@ -132,8 +132,8 @@ print(scores.mean())
 
 
 <figure class="half">
-	<img src="/img/2014-7-6-forests/gradient_boost_error_rate.png">
-	<img src="/img/2014-7-6-forests/adaboost_error_rate.png">
+	<img src="/img/2015-1-11-forests/gradient_boost_error_rate.png">
+	<img src="/img/2015-1-11-forests/adaboost_error_rate.png">
 </figure>
 
 Tada! The results of each of our methods. Disappointingly they are all about the same. This would be a great time to point out that it's important to figure out the right tool for the job and there are specific methods to figure what is limiting your algorithm's effectiveness, whether it be test set size, choosing the correct features, or changing learning rates. This a subject for an entire post, but we'll look at the data a little bit more to get insight into it.
@@ -141,7 +141,7 @@ Tada! The results of each of our methods. Disappointingly they are all about the
 Visualizing the test data using PCA (principal component analysis) shows that the data is relatively clustered together which could explain why increasing *n_estimators* doesn't improve the error rate by much. I still don't have a great intuition for PCA so this could also be misguided. Cut me some slack, I'm working on it.
 
 <figure>
-	<img src="/img/2014-7-6-forests/pca_test_data.png">
+	<img src="/img/2015-1-11-forests/pca_test_data.png">
 </figure>
 
 ###Feature Importance
@@ -149,8 +149,8 @@ Visualizing the test data using PCA (principal component analysis) shows that th
 One of the coolest advantages of using trees is being able to track feature importance. This tells us which features were most import in discerning spam from legitimate email. This is valuable information because it actually gives you insight into the analysis. Imagine you want to figure out when a customer is planning on leaving your service so you can entice them to stay. You run all the customer data through your ML pipeline and hooray! You end up saving the company from a lot of turnover. Unfortunately you still don't know WHY customers are choosing to leave so you can preempt the behavior. Feature importance to the rescue! In other algorithms such as neural networks this analysis is almost impossible. In fact some AI experts think that if we ever invent sentient AI we may not even understand how it works because the decision models will be too complex.
 
 <figure class="half">
-	<img src="/img/2014-7-6-forests/feature_importance_1.png">
-	<img src="/img/2014-7-6-forests/feature_importance_2.png">
+	<img src="/img/2015-1-11-forests/feature_importance_1.png">
+	<img src="/img/2015-1-11-forests/feature_importance_2.png">
 </figure>
 
 Remember that these are the most import features for determining spam AND not spam so values like 'george' are very indicative of not spam. Not a lot of surprises here: capital letters and exclamation points are easy identifiers of spam while names like 'george' and 'hp' (the company) are definitely safe words. The least important features include random numbers. About half of the features are the same order of magnitude of importance and the large majority are within one order of magnitude. This tells us that emails need a lot of features to classify them as spam. There could be cases like the message, "HAPPY BIRTHDAY!!!" being mistaken for spam (debatable whether it isn't spam. You  may be onto something poor algorithm). Short emails could easily be susceptible to misclassification with the current feature set. This data set doesn't provide us with the email text only the features described above to summarize them so it's difficult for us to generate new features or analyze misclassification examples. In all likelihood we could probably squeeze out an extra percent of effectiveness with a lot more work, but this is about as good as it gets for now. Real spam classification algorithms have much larger feature sets and data sets while constantly evolving in a cat and mouse game.
