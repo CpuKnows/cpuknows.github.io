@@ -18,6 +18,7 @@ My part in this process was implementing this model in a daily system and for th
 I learned so much about coding R from this project. There were a number of libraries I need to find to perform logging (futile.logger), unit testing (testthat), computationally efficient calculations (Rcpp), and more. I was constantly discovering ways to improve my code. I reached a place of comfort with R where I would be sitting on the bus and solutions to issues would pop in my head. I learned a million little things from this project rather than having epiphanies.
 
 The structure of the system looks like this:
+
 1. Load and clean data
 2. Summarize data
 3. Combine data and calculation from the combined file
