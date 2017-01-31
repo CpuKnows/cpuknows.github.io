@@ -67,7 +67,7 @@ Hidden Markov Models (HMM) are a way to uncover the hidden states, for example a
 
 We're going to generate states described by 2 features, [*desire to eat humans*, and *preference for night* ], we could have more features, but that makes it harder to visualize. In addition to the probability matrices we need to specify the mean and covariance of each state to be generated. Humans generally don't like to eat other humans and although I enjoy Chicago's nightlife the probabilities of becoming a vampire or zombie make me a little more wary, so the human mean is [-1, 3] with a covariances of [[.5, 0], [0, .5]]. Zombies REALLY like eating humans. In fact it's probably the only thing they think about. They don't care what time of day it is, most likely because they're entirely consumed by the thought of eating human flesh, so zombie mean is [9, 5]. Zombies are pretty much all alike so they have covariance [[.1, 0], [0, .1]]. Vampires enjoy a fresh human now and then, but it isn't an insatiable desire. If vampire movies from the 90s have taught me anything it's that they also enjoy going to underground clubs and dancing to techno music, so vampire is mean [8, 9] with covariance [[.8, 0], [0, .8]] because they're open minded.
 
-{% highlight python linenos %}
+{% highlight python %}
 from sklearn import hmm
 
 startprob = np.array([1.0, .0, .0])
@@ -110,7 +110,7 @@ plt.show()
 
 Technically this represents one individual's state transitions so we can infer that they're not having a good day. We can also perform the reverse operation by taking a set of observations to discover the model start probabilities, transition probabilities, mean, and covariance. We'll fit the model to the sample points we just generated to test this out. This uses a form of gradient descent to make predictions so it's possible to get stuck at a local minimum. You should always tweak the parameters and compare results using the **score()** method for the best model. These results are close enough where we can identify the human, vampire, and zombie states. They would be even better with more data. Based on the generated sample points above it may appear like it's finding these states with a form of clustering, but it's actually using the [Viterbi Algorithm][viterbi] which I won't discuss, but feel free to find out more.
 
-{% highlight python linenos %}
+{% highlight python %}
 n_components = 3
 
 # make an HMM instance and execute fit

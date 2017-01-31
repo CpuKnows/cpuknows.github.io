@@ -21,32 +21,32 @@ I'm going to use SciKit-Learn to demonstrate some of the characteristics of deci
 
 In SciKit-Learn the varieties of decision trees are packaged into *sklearn.ensemble*
 
-###Random Forests
+### Random Forests #
 
 Random forests use many weak classifiers, in the form of small decision trees, to average out to a much more correct answer (It makes me think of random forests as being similar to monte carlo methods, but slightly more complex. Finding the boundary of a function through randomness). To build these trees it uses a random subset of the data and branches based on a random subset of features (usually *sqrt(num_features)*). 
 
 A really cool advantage of forests and other ensemble methods is out-of-bag error. The algorithm keeps a list of the data points used to build a particular tree then uses data points not in that set to cross validate the tree. It can cover each tree this way making it unnecessary to create a separate cross validation set and give you more data to train with!
 
 
-###Extremely Randomized Trees
+### Extremely Randomized Trees #
 
 They really could have done better naming this one. Oh well (The two hardest things in CS are naming things, cache invalidation and off-by-one errors). This technique is the same as random forests, but with one notable exception. When creating a branch in a tree, random forests will choose the most discriminant value, attempting to split the data points evenly between the two branches. Extremely randomized trees will choose this split point arbitrarily. This will increase the bias slightly and lower the variance even further.
 
 
-###Gradient Boosting Classifier
+### Gradient Boosting Classifier #
 
 The previous two techniques are known as bagging techniques whereas gradient boosting is a boosting technique. A bagging technique samples from the data set with replacement for each weak classifier, i.e. a decision tree. Boosting involves building a model sequentially. Gradient boosting in particular is generalized for use with any loss function.
 
 
-###AdaBoost Classifier
+### AdaBoost Classifier #
 
 When I first came across this I assumed it was referring to [Ada Lovelace][ada], unfortunately it just means adaptive. Each data point is assigned a weight of 1/N initially where N is the number of data points. Then every iteration of the algorithm the weights are adjusted so the incorrectly classified data points have a higher weight and the correct data points have lower weights. This effectively tells the algorithm to optimize for the edge cases.
 
-###GridSearch
+### GridSearch #
 
 Scikit-Learn has an amazing tool called [GridSearch][grid] which tests out combinations of parameters to get the best cross-validation results. Unfortunately GridSearch doesn't play nice with the out-of-bag error estimator so we'll have to carve out a cross-validation set, but fortunately GridSearch takes care of this work for us. More trees should increase the prediction accuracy, but with diminishing returns. At some point it is just not worth the extra computation time. We'll max out our search at 1,000 trees.
 
-{% highlight python linenos %}
+{% highlight python %}
 from sklearn.ensemble import ExtraTreesClassifier, RandomForestClassifier, 
 								AdaBoostClassifier, GradientBoostingClassifier
 from sklearn.grid_search import GridSearchCV
@@ -82,7 +82,7 @@ print('\n')
 {% endhighlight %}
 
 
-###Parallelization of tree generation
+### Parallelization of tree generation #
 
 Bagging techniques can benefit from parallelization because they are creating many independent trees whereas boosting techniques are iterative and cannot benefit as much from parallelization. Using the *n_jobs* parameter we can specify the number of CPU cores to use when generating trees. The default is *n_jobs=1* and I'll test it with *n_jobs=-1* which means use as many CPU cores as you can. I have an i7 so this should be a pretty good speedup, not linear because there is still overhead for the parallelization process, but still pretty good. As expected *ExtraTreesClassifier* is faster than *RandomForestClassifier* because it doesn't need to find the most discriminant value for each branch split. With *n_estimators=3000* the benefit was even better than double.
 
@@ -100,9 +100,9 @@ Bagging techniques can benefit from parallelization because they are creating ma
 1 loops, best of 3: 4.36 s per loop #Extremely randomized trees, n_jobs=-1
 {% endhighlight %}
 
-###Cross validation and error rates
+### Cross validation and error rates #
 
-{% highlight python linenos %}
+{% highlight python %}
 clf_rf = RandomForestClassifier(n_estimators=rf_gs_cv.best_params_['n_estimators'])
 scores = cross_val_score(clf, Xtrain, Ytrain)
 print(scores.mean())
@@ -144,7 +144,7 @@ Visualizing the test data using PCA (principal component analysis) shows that th
 	<img src="/img/2015-1-11-forests/pca_test_data.png">
 </figure>
 
-###Feature Importance
+### Feature Importance #
 
 One of the coolest advantages of using trees is being able to track feature importance. This tells us which features were most import in discerning spam from legitimate email. This is valuable information because it actually gives you insight into the analysis. Imagine you want to figure out when a customer is planning on leaving your service so you can entice them to stay. You run all the customer data through your ML pipeline and hooray! You end up saving the company from a lot of turnover. Unfortunately you still don't know WHY customers are choosing to leave so you can preempt the behavior. Feature importance to the rescue! In other algorithms such as neural networks this analysis is almost impossible. In fact some AI experts think that if we ever invent sentient AI we may not even understand how it works because the decision models will be too complex.
 

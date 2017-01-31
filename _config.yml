@@ -1,7 +1,7 @@
 safe: true
-highlighter: pygments
+highlighter: rouge
 permalink: pretty
-markdown: rdiscount
+markdown: kramdown
 
 title: John Maxwell
 name: John Maxwell's Dev Blog
@@ -14,3 +14,8 @@ css:
     - /css/code.css
     - /lib/font-awesome/css/font-awesome.min.css
     - http://fonts.googleapis.com/css?family=Droid+Sans:400,700
+gems:
+  - jekyll-feed
+exclude:
+  - Gemfile
+  - Gemfile.lock

@@ -17,7 +17,7 @@ Many examples of A/B testing assume a 50-50 split in the test set, but often in 
 
 First we're going to generate some test data from the Truth (A = 0.05, B = 0.04) with a Bernoulli random variable. Notice that our observations don't match the Truth. From a frequentist perspective we would be finished with our test. 
 
-{% highlight python linenos %}
+{% highlight python %}
 import pymc as pm
 
 A_true = 0.05
@@ -38,7 +38,7 @@ print(observations_b.mean())
 
 We'll begin with the assumption that P(A) and P(B) could be any value between 0 and 1, a uniform prior. Obviously if we're testing a website conversion rate it isn't going to be 100% so if we wanted to we could incorporate this prior knowledge into our model with these variables. Calculating the delta between the two choices helps us understand which is better and how much better we think it is. Our posterior will be a Bernoulli distribution for A and B. We're going to sample from this distribution with [MCMC][mcmc] disregarding the first 1000 samples as they are very unlikely to converge and we don't want them to influence our model.
 
-{% highlight python linenos %}
+{% highlight python %}
 import pymc as pm
 
 p_A = pm.Uniform('p_A', lower=0, upper=1)
