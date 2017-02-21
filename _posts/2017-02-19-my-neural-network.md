@@ -19,7 +19,7 @@ Let me say that debugging a neural network can be tricky. I spent half a day won
 ### Is it learning? #
 
 <figure>
-	<img src="/img/2017-02-19-my-neural-network/old_batch_size.png">
+	<img src="/img/2017-02-19-my-neural-network/old_batch_size_1.png">
 	<figcaption>This learning curve doesn't look right</figcaption>
 </figure>
 
